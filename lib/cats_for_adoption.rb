@@ -1,5 +1,5 @@
-require "cats_for_adoption/version"
+require_relative "./cats_for_adoption/version"
+require_relative "./cats_for_adoption/cli"
+require_relative "./cats_for_adoption/cats"
 
-module CatsForAdoption
-  # Your code goes here...
-end
+#this is an environment for all the code within these folders

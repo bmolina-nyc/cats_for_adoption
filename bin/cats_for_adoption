@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby 
+
+# Ths is an execution point file - this is the file that gets the program to run
+
+# notice you are requiring the entire library of files in the cats_for_adoption folder
+# You're calling the CLI class via the CatsForAdoption module 
+
+require "./lib/cats_for_adoption"
+
+CatsForAdoption::CLI.new.call
