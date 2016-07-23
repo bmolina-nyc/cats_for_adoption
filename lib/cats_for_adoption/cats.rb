@@ -1,6 +1,6 @@
 class CatsForAdoption::Cats
 
-  attr_accessor :name, :color, :breed, :sex, :story
+  attr_accessor :name, :color, :breed, :gender, :age, :story
 
   def self.list_all 
     # within this method, I need a bunch of instances of Cats
@@ -30,12 +30,10 @@ class CatsForAdoption::Cats
     doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats"))
     binding.pry
 
-    # need a name, breed, sex, story
-    # I can get name, breed, sex from the index page 
-    # to get story I need to go a level deeper into the profile page 
-    # alot of trouble grabbing stuff other than name - lets try just name for now
-    # this code gets you close to the text you need for breed and sex -- doc.css("div.pet_results.rounded_corner").first.text.strip.split("\n")
-    #doc.css("div.pet_results.rounded_corner").each do |cat_index|
+    # need a name, color, breed, gender, age, story
+    # I can get name from the index page 
+    # other items come from the cats personal profile page 
+
 
 
     name = doc.css("p.truncate.no_top_margin a.name.museo700.track").first.text.strip
@@ -43,6 +41,19 @@ class CatsForAdoption::Cats
     # aspca site name doc.css("div.link.status-1").first.text.strip
     #name = doc.css("p.truncate.no_top_margin a.name.museo700.track").first.text.strip
     #breed = 
+  end
+
+    def self.scrape_cat_indexes_orig
+    doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats")
+    binding.pry
+
+    # need a name, color, breed, gender, age, story
+    # I can get name from the index page 
+    # other items come from the cats personal profile page 
+
+    
+    name =  doc.css("div.link.status-1").first.text.strip
+    
   end
 
   def self.scrape_cat_profile_pages
