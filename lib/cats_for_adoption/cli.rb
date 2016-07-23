@@ -12,6 +12,10 @@ class CatsForAdoption::CLI
 
   
     @cats = CatsForAdoption::Cats.list_all# need a method here to scrape the cats
+
+    @cats.each.with_index(1) do |cat, idx|
+      puts "#{idx}. #{cat.name} #{cat.breed} #{cat.sex} #{cat.story}"
+    end
   end
 
   def choose_cats
@@ -22,7 +26,8 @@ class CatsForAdoption::CLI
     input = gets.chomp.downcase 
 
       if input.to_i > 0 
-        puts @cats[input.to_i-1]
+        the_cat = @cats[input.to_i-1]
+        puts "#{the_cat.name} #{the_cat.breed} #{the_cat.sex} #{the_cat.story}"
       elsif input == "list"
         list_cats
       else

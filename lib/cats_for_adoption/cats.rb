@@ -5,25 +5,33 @@ class CatsForAdoption::Cats
   def self.list_all 
     # within this method, I need a bunch of instances of Cats
     # a here doc is a long comment
-    puts <<-DOC.gsub /^\s*/, ''
-      1. Lola
-      2. Dextoo
-      3. Peppone
-    DOC
+    # puts <<-DOC.gsub /^\s*/, ''
+    #   1. Lola
+    #   2. Dextoo
+    #   3. Peppone
+    # DOC
+    self.scrape_cats
+  end
 
-    cat_1 = self.new
-    cat_1.name = "Lolabear"
-    cat_1.breed = "Russian Blue "
-    cat_1.sex = "Female Adult"
-    cat_1.story = "Story"
+  def self.scrape_cats
+    cats = [] 
+    # need to scrape the cat website and return cats based on the data
+    # go to cat website - scrape the indexes
+    # instantiate a cat 
+    # add it to an array of cats
 
-    cat_2 = self.new
-    cat_2.name = "Dextoo"
-    cat_2.breed = "Tabby"
-    cat_2.sex = "Male Tabby"
-    cat_2.story = "Story"
+    cats << self.scrape_cat_index
 
-    [cat_1, cat_2]
+   
+    cats 
+  end
+
+  def self.scrape_cat_index
+    doc = Nokogiri::HTML(open("http://www.adoptapet.com/shelter80748-cats.html"))
+    binding.pry
+
+    # need a name, breed, sex, story
+    # I can get name, breed, sex
   end
 
 
