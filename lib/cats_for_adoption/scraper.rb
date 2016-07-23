@@ -1,0 +1,8 @@
+class CatsForAdoption::Scraper
+
+
+
+
+
+
+end

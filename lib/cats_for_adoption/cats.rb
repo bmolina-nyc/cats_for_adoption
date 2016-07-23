@@ -33,27 +33,9 @@ class CatsForAdoption::Cats
     # need a name, color, breed, gender, age, story
     # I can get name from the index page 
     # other items come from the cats personal profile page 
-
-
-
-    name = doc.css("p.truncate.no_top_margin a.name.museo700.track").first.text.strip
     
-    # aspca site name doc.css("div.link.status-1").first.text.strip
-    #name = doc.css("p.truncate.no_top_margin a.name.museo700.track").first.text.strip
-    #breed = 
-  end
-
-    def self.scrape_cat_indexes_orig
-    doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats")
-    binding.pry
-
-    # need a name, color, breed, gender, age, story
-    # I can get name from the index page 
-    # other items come from the cats personal profile page 
-
-    
-    name =  doc.css("div.link.status-1").first.text.strip
-    
+    name =  doc.css("div.link.status-1").first.text.strip   # a cats name from the index page 
+  
   end
 
   def self.scrape_cat_profile_pages
@@ -61,9 +43,17 @@ class CatsForAdoption::Cats
     doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats/mauro-a30197092"))
     binding.pry
     
-    color = doc.css("div.field.field-name-field-color.field-type-text.field-label-inline").css("div.field-items").css("div.field-item.even").text
-
-
+    color = doc.css("div.field.field-name-field-color.field-type-text.field-label-inline").css("div.field-items").text
+    breed = doc.css("div.field.field-name-field-breed.field-type-text.field-label-inline").css("div.field-items").text
+    gender = doc.css("div.field.field-name-field-gender.field-type-list-text.field-label-inline").css("div.field-items").text
+    age = doc.css("div.field.field-name-field-birthdate.field-type-datetime.field-label-inline").css("div.field-item.even").text.strip    
+    
+    case gender 
+      when "Male"
+        story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p").text.gsub("Office Foster CatAs part of our adoption program, some of our feline friends have the opportunity to live in ASPCA team members' offices. Living in an office allows cats to have a more comfortable and domestic living space, and allows our behaviorists to learn more about each individual kitty's personality and needs. Through the office foster program, we are able to offer adopters a clearer picture of how their new feline friend will adjust to life in a permanent home.More About Him:" , "")
+      when "Female"
+         story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p").text.gsub("Office Foster CatAs part of our adoption program, some of our feline friends have the opportunity to live in ASPCA team members' offices. Living in an office allows cats to have a more comfortable and domestic living space, and allows our behaviorists to learn more about each individual kitty's personality and needs. Through the office foster program, we are able to offer adopters a clearer picture of how their new feline friend will adjust to life in a permanent home.More About Her:" , "")
+    end
   end
 
 
