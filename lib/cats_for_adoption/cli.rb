@@ -7,27 +7,41 @@ class CatsForAdoption::CLI
     goodbye 
   end
 
+  def spaces
+     2.times { puts "\n" }
+   end
+
   def list_cats
     puts "Cats for Adoption:"
-
+    spaces 
   
     @cats = CatsForAdoption::Cats.list_all# need a method here to scrape the cats
 
     @cats.each.with_index(1) do |cat, idx|
-      puts "#{idx}. #{cat.name} #{cat.breed} #{cat.sex} #{cat.story}"
+      puts "#{idx}. #{cat.name}" + "\n" + 
+      "#{cat.color}" + "\n" +
+      "#{cat.breed}"
     end
   end
 
   def choose_cats
+    spaces
     input = nil
-    while input != "exit"
     
+    while input != "exit"
+    spaces 
+
     puts "please choose the cat number you're interested or list to see the cats menu or type exit:"
     input = gets.chomp.downcase 
 
-      if input.to_i > 0 
-        the_cat = @cats[input.to_i-1]
-        puts "#{the_cat.name} #{the_cat.breed} #{the_cat.sex} #{the_cat.story}"
+      if input.to_i == 1 # change later 
+        cat = @cats[input.to_i-1]
+         puts "#{cat.name}" + "\n" + 
+          "#{cat.color}" + "\n" +
+          "#{cat.breed}" + "\n" + 
+          "#{cat.age}" + "\n" + 
+          "#{cat.gender}" + "\n" + "\n" + 
+          "#{cat.story}"
       elsif input == "list"
         list_cats
       else
