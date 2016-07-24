@@ -27,27 +27,37 @@ class CatsForAdoption::CLI
 
   def choose_cats
     spaces
+    
     input = nil
     
-    while input != "exit"
-    spaces 
+     puts "Please choose the cat number you're interested in" + "\n" +
+    "You can also type 'list' to return to the Cat menu" + "\n" +
+     "Type 'exit' to quit"
 
-    puts "Please choose the cat number you're interested in" + "\n" + "You can also type 'list' to return to the Cat menu" + "\n" + "Type 'exit' to quit"
+    while input != "exit"
+
+    spaces 
 
     input = gets.chomp.downcase
 
-      if input < 9 
+    puts "type 'list' a cat number or 'exit'"
+
+      if input.to_i < 9 
         cat = @cats[input.to_i-1]
          puts "#{cat.name}" + "\n" + 
           "#{cat.color}" + "\n" +
           "#{cat.breed}" + "\n" + 
           "#{cat.age}" + "\n" + 
           "#{cat.gender}" + "\n" + "\n" + 
-          "#{cat.story}"
+          "#{cat.story}" 
+          spaces 
+
       elsif input == "list"
+        
         list_cats
-      else
-        puts "not sure what you want - type list, a cat number or exit"
+      
+      elsif input == exit 
+        goodbye
       end
     end
   end

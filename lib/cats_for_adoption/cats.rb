@@ -43,7 +43,12 @@ class CatsForAdoption::Cats
     cat.gender = doc.css("div.field.field-name-field-gender.field-type-list-text.field-label-inline").css("div.field-items").text
     cat.age = doc.css("div.field.field-name-field-birthdate.field-type-datetime.field-label-inline").css("div.field-item.even").text.strip  
     #need to see how to strip extra text or trim the below - paragraphs might be too embedded and changing from page to page. below works good so far though 
-    cat.story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[3..5].text 
+    
+    if doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[3..5].any? { |el| el != nil }
+        cat.story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[3..5].text
+    else
+        cat.story = "No Bio Available"
+    end
     
     cat_instances << cat 
     end
