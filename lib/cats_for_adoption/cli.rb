@@ -21,6 +21,7 @@ class CatsForAdoption::CLI
       puts "#{idx}. #{cat.name}" + "\n" + 
       "#{cat.color}" + "\n" +
       "#{cat.breed}"
+      spaces 
     end
   end
 
@@ -33,9 +34,9 @@ class CatsForAdoption::CLI
 
     puts "Please choose the cat number you're interested in" + "\n" + "You can also type 'list' to return to the Cat menu" + "\n" + "Type 'exit' to quit"
 
-    input = gets.chomp.downcase 
+    input = gets.chomp.downcase
 
-      if input.to_i == 1 # change later 
+      if input < 9 
         cat = @cats[input.to_i-1]
          puts "#{cat.name}" + "\n" + 
           "#{cat.color}" + "\n" +
