@@ -23,6 +23,7 @@ class CatsForAdoption::CLI
       "#{cat.breed}"
       spaces 
     end
+    puts "type 'list' a cat number or 'exit'"
   end
 
   def choose_cats
@@ -34,15 +35,14 @@ class CatsForAdoption::CLI
     "You can also type 'list' to return to the Cat menu" + "\n" +
      "Type 'exit' to quit"
 
-    while input != "exit"
+    until input == "exit"
 
     spaces 
 
     input = gets.chomp.downcase
 
-    puts "type 'list' a cat number or 'exit'"
 
-      if input.to_i < 9 
+      if input.match(/[1-8]/)
         cat = @cats[input.to_i-1]
          puts "#{cat.name}" + "\n" + 
           "#{cat.color}" + "\n" +
@@ -52,18 +52,20 @@ class CatsForAdoption::CLI
           "#{cat.story}" 
           spaces 
 
+          puts "type 'list' a cat number or 'exit'"
       elsif input == "list"
-        
+        system('clear')
         list_cats
-      
-      elsif input == exit 
-        goodbye
+      elsif input == "exit"
+        break
+      else
+        puts "I'm not sure what you mean - please type 'list' a cat number or 'exit' "
       end
     end
   end
 
   def goodbye
-    puts "Thanks for checking in!"
+    puts "Thanks for checking in - Meow!"
   end
 
 end
