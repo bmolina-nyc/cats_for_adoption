@@ -44,11 +44,8 @@ class CatsForAdoption::Cats
     cat.age = doc.css("div.field.field-name-field-birthdate.field-type-datetime.field-label-inline").css("div.field-item.even").text.strip  
     #need to see how to strip extra text or trim the below - paragraphs might be too embedded and changing from page to page. below works good so far though 
     
-    if doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[3..5].any? { |el| el != nil }
-        cat.story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[3..5].text
-    else
-        cat.story = "No Bio Available"
-    end
+    # refactor below for a method to clean up all the gsubs here 
+    cat.story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[1..5].text.gsub("As part of our adoption program, some of our feline friends have the opportunity to live in ASPCA team members' offices. Living in an office allows cats to have a more comfortable and domestic living space, and allows our behaviorists to learn more about each individual kitty's personality and needs. Through the office foster program, we are able to offer adopters a clearer picture of how their new feline friend will adjust to life in a permanent home.", "").gsub(/More About Him:/, "").gsub(/More About Her:/,"").gsub(/About Him:/, "").gsub(/About Her:/,"")
     
     cat_instances << cat 
     end
