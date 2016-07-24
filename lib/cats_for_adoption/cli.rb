@@ -8,14 +8,14 @@ class CatsForAdoption::CLI
   end
 
   def spaces
-     2.times { puts "\n" }
+     1.times { puts "\n" }
    end
 
   def list_cats
     puts "Cats for Adoption:"
     spaces 
   
-    @cats = CatsForAdoption::Cats.list_all# need a method here to scrape the cats
+    @cats = CatsForAdoption::Cats.list_all
 
     @cats.each.with_index(1) do |cat, idx|
       puts "#{idx}. #{cat.name}" + "\n" + 
@@ -31,7 +31,8 @@ class CatsForAdoption::CLI
     while input != "exit"
     spaces 
 
-    puts "please choose the cat number you're interested or list to see the cats menu or type exit:"
+    puts "Please choose the cat number you're interested in" + "\n" + "You can also type 'list' to return to the Cat menu" + "\n" + "Type 'exit' to quit"
+
     input = gets.chomp.downcase 
 
       if input.to_i == 1 # change later 

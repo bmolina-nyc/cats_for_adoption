@@ -2,6 +2,7 @@ class CatsForAdoption::Cats
 
   attr_accessor :name, :color, :breed, :gender, :age, :story
 
+  # this method lists returns every cat object in the array
   def self.list_all 
     # within this method, I need a bunch of instances of Cats
 
@@ -14,6 +15,7 @@ class CatsForAdoption::Cats
     self.scrape_cats
   end
 
+  # a method that takes instantiated cats and pushes them into an array of cat objects
   def self.scrape_cats
     cats = [] 
     # need to scrape the cat website and return cats based on the data
