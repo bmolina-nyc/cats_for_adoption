@@ -32,9 +32,9 @@ class CatsForAdoption::Cats
     # need a name, color, breed, gender, age, story
     # I can get all of this from a cats personal profile page 
 
-  def self.scrape_cat_profile_page
+  def self.scrape_cat_profile_page(urls_array)
     # need to iterate on all the cat profile urls - will test with a single one for now
-    doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats/mauro-a30197092"))
+    doc = Nokogiri::HTML(open("cat_url"))
  
 
     cat = self.new 
@@ -48,6 +48,20 @@ class CatsForAdoption::Cats
      
 
     cat 
+  end
+
+  #goal of this method is to collect all cat urls and have them ready to deliver for the method above - must collect all 10
+  def self.index_page_urls
+    doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats"))
+    urls_array = []
+    
+    i = 0 
+    while i < 5 
+        urls_array << doc.css("div.view-content").css("div.views-row-odd.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
+        urls_array << doc.css("div.view-content").css("div.views-row-even.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
+        i += 1 
+    end
+    urls_array
   end
 
 

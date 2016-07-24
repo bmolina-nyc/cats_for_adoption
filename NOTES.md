@@ -45,3 +45,34 @@ A cat has a breed
 A cat has a sex and age
 A cat has a story
 A cat has a url?
+
+
+
+I have successfully scraped a single cats index page 
+
+I need to now refactor or create a method that will allow me to grab entire indexes from this page 
+- http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats
+
+Div container holding all the cats (may need to go levels deeper) - div.view-content
+This can nail down to a single URL - doc.css("div.view-content").css("div.link.status-1 a").attribute("href").value
+Need the div where I could iterate and grab all of the xml elements with the above code
+
+Can iterate on this and grab them  - iterate on i
+doc.css("div.view-content").css("div.views-row-odd.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
+
+
+left side cats
+i = 0 
+while i < 5
+puts doc.css("div.view-content").css("div.views-row-even.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
+i += 1 
+end
+
+right side cats
+i = 0 
+while i < 5
+puts doc.css("div.view-content").css("div.views-row-even.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
+i += 1 
+end
+
+
