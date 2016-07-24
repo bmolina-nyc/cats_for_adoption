@@ -67,6 +67,15 @@ class CatsForAdoption::Cats
     urls_array
   end
 
+  def cat_bio(value)
+    cat = @cats[value.to_i-1]
+    puts "#{cat.name}" + "\n" + 
+      "#{cat.color}" + "\n" +
+      "#{cat.breed}" + "\n" + 
+      "#{cat.age}" + "\n" + 
+      "#{cat.gender}" + "\n" + "\n" + 
+      "#{cat.story}"   
+  end
 
 
 

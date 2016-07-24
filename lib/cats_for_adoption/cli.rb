@@ -42,14 +42,8 @@ class CatsForAdoption::CLI
     input = gets.chomp.downcase
 
 
-      if input.match(/[1-8]/)
-        cat = @cats[input.to_i-1]
-         puts "#{cat.name}" + "\n" + 
-          "#{cat.color}" + "\n" +
-          "#{cat.breed}" + "\n" + 
-          "#{cat.age}" + "\n" + 
-          "#{cat.gender}" + "\n" + "\n" + 
-          "#{cat.story}" 
+      if input.match(/[1-8]/) && input.to_i < 9 
+          cat_bio(input)
           spaces 
 
           puts "type 'list' a cat number or 'exit'"
