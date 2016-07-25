@@ -3,15 +3,8 @@ class CatsForAdoption::Cats
   attr_accessor :name, :color, :breed, :gender, :age, :story
 
   # this method lists returns every cat object in the array
+  # within this method, I need a bunch of instances of Cats
   def self.list_all 
-    # within this method, I need a bunch of instances of Cats
-
-    # a here doc is a long comment
-    # puts <<-DOC.gsub /^\s*/, ''
-    #   1. Lola
-    #   2. Dextoo
-    #   3. Peppone
-    # DOC
     self.scrape_cat_profile_page
   end
 
@@ -34,8 +27,7 @@ class CatsForAdoption::Cats
     cat.gender = doc.css("div.field.field-name-field-gender.field-type-list-text.field-label-inline").css("div.field-items").text
     cat.age = doc.css("div.field.field-name-field-birthdate.field-type-datetime.field-label-inline").css("div.field-item.even").text.strip  
     #need to see how to strip extra text or trim the below - paragraphs might be too embedded and changing from page to page. below works good so far though 
-    
-    # refactor below for a method to clean up all the gsubs here 
+    # refactor below for a method to clean up all the gsubs here?
     cat.story = doc.css("div.field.field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[1..5].text.gsub("As part of our adoption program, some of our feline friends have the opportunity to live in ASPCA team members' offices. Living in an office allows cats to have a more comfortable and domestic living space, and allows our behaviorists to learn more about each individual kitty's personality and needs. Through the office foster program, we are able to offer adopters a clearer picture of how their new feline friend will adjust to life in a permanent home.", "").gsub(/More About Him:/, "").gsub(/More About Her:/,"").gsub(/About Him:/, "").gsub(/About Her:/,"")
     
     cat_instances << cat 
