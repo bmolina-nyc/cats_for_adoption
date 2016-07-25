@@ -27,6 +27,8 @@ class CatsForAdoption::CLI
     puts "type 'list' a cat number or 'exit'"
   end
 
+  OPTIONS = ["1","2","3","4","5","6","7","8","9","10"]
+  
   def choose_cats
     spaces
     
@@ -43,7 +45,7 @@ class CatsForAdoption::CLI
     input = gets.chomp.downcase
 
 
-      if input.match(/[1-8]/) && input.to_i < 9 
+      if OPTIONS.include?(input) && input.to_i <= 10 
           cat_bio(input)
           spaces 
 
