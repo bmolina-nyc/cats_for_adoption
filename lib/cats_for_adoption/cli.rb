@@ -1,6 +1,7 @@
 class CatsForAdoption::CLI
 
 
+
   def call
     list_cats
     choose_cats
@@ -48,8 +49,8 @@ class CatsForAdoption::CLI
 
           puts "type 'list' a cat number or 'exit'"
       elsif input == "list"
-        system('clear')
-        list_cats
+          system('clear')
+          list_cats
       elsif input == "exit"
         break
       else
@@ -60,6 +61,16 @@ class CatsForAdoption::CLI
 
   def goodbye
     puts "Thanks for checking in - Meow!"
+  end
+
+   def cat_bio(value)
+    cat = @cats[value.to_i-1]
+    puts "#{cat.name}" + "\n" + 
+      "#{cat.color}" + "\n" +
+      "#{cat.breed}" + "\n" + 
+      "#{cat.age}" + "\n" + 
+      "#{cat.gender}" + "\n" + "\n" + 
+      "#{cat.story}"   
   end
 
 end

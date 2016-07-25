@@ -12,15 +12,6 @@ class CatsForAdoption::Cats
     #   2. Dextoo
     #   3. Peppone
     # DOC
-    self.scrape_cats
-  end
-
-  # a method that takes instantiated cats and pushes them into an array of cat objects
-  def self.scrape_cats
-    # need to scrape the cat website and return cats based on the data
-    # go to cat website - scrape the indexes
-    # instantiate a cat 
-    # add it to an array of cats
     self.scrape_cat_profile_page
   end
 
@@ -59,24 +50,12 @@ class CatsForAdoption::Cats
     urls_array = []
     
     i = 0 
-    while i < 4
+    while i < 4   
         urls_array << doc.css("div.view-content").css("div.views-row-odd.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
         urls_array << doc.css("div.view-content").css("div.views-row-even.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
         i += 1 
     end
     urls_array
   end
-
-  def cat_bio(value)
-    cat = @cats[value.to_i-1]
-    puts "#{cat.name}" + "\n" + 
-      "#{cat.color}" + "\n" +
-      "#{cat.breed}" + "\n" + 
-      "#{cat.age}" + "\n" + 
-      "#{cat.gender}" + "\n" + "\n" + 
-      "#{cat.story}"   
-  end
-
-
 
 end 
