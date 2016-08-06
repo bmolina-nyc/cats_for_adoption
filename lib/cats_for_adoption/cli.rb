@@ -10,13 +10,20 @@ class CatsForAdoption::CLI
      1.times { puts "\n" }
    end
 
+  def display_cats
+    CatsForAdoption::Scraper.scrape_cat_profile_page
+    CatsForAdoption::Cat.all 
+  end
+
   def list_cats
     puts "Cats for Adoption:"
     spaces 
-  
-    @cats = CatsForAdoption::Scraper.all 
 
-    @cats.each.with_index(1) do |cat, idx|
+    CatsForAdoption::Cat.all_clear 
+
+    @cat_list = display_cats
+
+    @cat_list.each.with_index(1) do |cat, idx|
       puts "#{idx}. #{cat.name}" + "\n" + 
       "#{cat.color}" + "\n" +
       "#{cat.breed}"
@@ -61,7 +68,7 @@ class CatsForAdoption::CLI
   end
 
    def cat_bio(value)
-    cat = @cats[value.to_i-1]
+    cat = @cat_list[value.to_i-1]
     puts "#{cat.name}" + "\n" + 
       "#{cat.color}" + "\n" +
       "#{cat.breed}" + "\n" + 

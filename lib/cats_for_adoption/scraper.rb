@@ -1,11 +1,4 @@
 class CatsForAdoption::Scraper
-
-  @@all = []
-
-  def self.all
-    @@all
-  end
-
   
   def self.scrape_cat_profile_page
     # need to iterate on all the cat profile urls and add in the beginning of the website url
@@ -29,10 +22,7 @@ class CatsForAdoption::Scraper
       :story => doc.css(".field-name-body.field-type-text-with-summary.field-label-hidden").css("div.field-item.even").css("p")[1..5].text.gsub("As part of our adoption program, some of our feline friends have the opportunity to live in ASPCA team members' offices. Living in an office allows cats to have a more comfortable and domestic living space, and allows our behaviorists to learn more about each individual kitty's personality and needs. Through the office foster program, we are able to offer adopters a clearer picture of how their new feline friend will adjust to life in a permanent home.", "").gsub(/More About Him:/, "").gsub(/More About Her:/,"").gsub(/About Him:/, "").gsub(/About Her:/,"")
       }
     )
-    
-    @@all << cat 
     end # thurgood has no story and is breaking my scrape! iterating only upto 8 cats so I can carry on with this lab 
-  all
   end
 
   #goal of this method is to collect all cat urls and have them ready to deliver for the method above - must collect all 10

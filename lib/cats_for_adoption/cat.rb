@@ -1,6 +1,16 @@
 class CatsForAdoption::Cat
 
-  attr_accessor :name, :color, :breed, :gender, :age, :story
+  attr_accessor :name, :color, :breed, :age, :gender, :story
+
+  @@all = [] 
+
+  def self.all 
+    @@all 
+  end
+
+  def self.all_clear
+    @@all.clear
+  end
 
   def initialize(attributes = {})
     @name = attributes[:name]
@@ -8,6 +18,7 @@ class CatsForAdoption::Cat
     @breed = attributes[:breed]
     @age = attributes[:age]
     @story = attributes[:story]
+    @@all << self 
   end
 
 end 
