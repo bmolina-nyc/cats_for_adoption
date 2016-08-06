@@ -1,7 +1,5 @@
 class CatsForAdoption::CLI
 
-
-
   def call
     list_cats
     choose_cats
@@ -16,7 +14,7 @@ class CatsForAdoption::CLI
     puts "Cats for Adoption:"
     spaces 
   
-    @cats = CatsForAdoption::Cats.list_all
+    @cats = CatsForAdoption::Scraper.new.all
 
     @cats.each.with_index(1) do |cat, idx|
       puts "#{idx}. #{cat.name}" + "\n" + 
@@ -26,8 +24,6 @@ class CatsForAdoption::CLI
     end
     puts "type 'list' a cat number or 'exit'"
   end
-
-  OPTIONS = ["1","2","3","4","5","6","7","8","9","10"]
   
   def choose_cats
     spaces
@@ -44,8 +40,7 @@ class CatsForAdoption::CLI
 
     input = gets.chomp.downcase
 
-
-      if OPTIONS.include?(input) && input.to_i <= 10 
+      if input.to_i.between?(1,10)
           cat_bio(input)
           spaces 
 
