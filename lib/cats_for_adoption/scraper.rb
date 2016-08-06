@@ -31,8 +31,8 @@ class CatsForAdoption::Scraper
     )
     
     @@all << cat 
-    end # thurgood has no story and is breaking my scrape! iterating only upto 8 cats so I can carry on with this lab
-  all   
+    end # thurgood has no story and is breaking my scrape! iterating only upto 8 cats so I can carry on with this lab 
+  all
   end
 
   #goal of this method is to collect all cat urls and have them ready to deliver for the method above - must collect all 10

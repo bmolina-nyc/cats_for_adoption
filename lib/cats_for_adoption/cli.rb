@@ -14,7 +14,7 @@ class CatsForAdoption::CLI
     puts "Cats for Adoption:"
     spaces 
   
-    @cats = CatsForAdoption::Scraper.new.all
+    @cats = CatsForAdoption::Scraper.scrape_cat_profile_page
 
     @cats.each.with_index(1) do |cat, idx|
       puts "#{idx}. #{cat.name}" + "\n" + 
