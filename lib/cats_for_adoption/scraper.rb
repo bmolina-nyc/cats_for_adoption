@@ -30,7 +30,7 @@ class CatsForAdoption::Scraper
     doc = Nokogiri::HTML(open("http://www.aspca.org/nyc/aspca-adoption-center/adoptable-cats"))#.css("div.field-item.")
     urls_array = []
     i = 0 
-    while i < 5  
+    while i < 4  # this is subject to change based on how they update their website - keep it at 8 cat listing cause 10 will break below 
         urls_array << doc.css("div.view-content").css("div.views-row-odd.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
         urls_array << doc.css("div.view-content").css("div.views-row-even.listing.contextual-links-region")[i].css("div.link.status-1 a").attribute("href").value
         i += 1 
